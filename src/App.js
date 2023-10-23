@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import './App.css'
+import HomePage from "./HomePage";
+import MyModel from "./MyModel";
 
 function App() {
+  const [repoUrl, setRepoUrl] = useState('');
+
+  const handleRepoUrlChange = (event) => {
+    setRepoUrl(event.target.value);
+  };
+
+  const handleTrainModel = () => {
+    // You can add logic here to send the repo URL to the server for training the model.
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+     <Router>
+       <Routes>
+         <Route path="/" element={<HomePage />} />
+         <Route path="/models" element={<MyModel />} />
+       </Routes>
+     </Router>
   );
 }
 
